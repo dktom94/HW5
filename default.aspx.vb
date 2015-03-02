@@ -82,4 +82,13 @@ Partial Class _Default
 
     End Sub
 
+    Public Sub clearButton_Click(sender As Object, e As EventArgs) Handles clearButton.Click
+        tbLoanAmt.Text = ""
+        tbAnnualInterest.Text = ""
+        tbLoanTerm.Text = ""
+        lblMonthlyPmt.Text = ""
+        loanGridView.DataBind()
+       
+    End Sub
+
 End Class
