@@ -28,9 +28,37 @@ Partial Class _Default
         'This section converts each input string to the appropriate variable assigned.
 
 
-        loanAmount = CDbl(tbLoanAmt.Text)
-        annualRate = CDbl(tbAnnualInterest.Text)
-        term = CDbl(tbLoanTerm.Text)
+        If tbLoanAmt.Text = "" Then
+            lblMonthlyPmt.Text = "Please fill all required fields"
+            Exit Sub
+        ElseIf tbLoanAmt.Text < 0 Then
+            lblMonthlyPmt.Text = "Please enter a positive number"
+            Exit Sub
+        Else
+            loanAmount = CDbl(Val(tbLoanAmt.Text))
+        End If
+
+
+        If tbAnnualInterest.Text = "" Then
+            lblMonthlyPmt.Text = "Please fill all required fields"
+            Exit Sub
+        ElseIf tbAnnualInterest.Text < 0 Then
+            lblMonthlyPmt.Text = "Please enter a positive number"
+            Exit Sub
+        Else
+            annualRate = CDbl(Val(tbAnnualInterest.Text))
+        End If
+
+        If tbLoanTerm.Text = "" Then
+            lblMonthlyPmt.Text = "Please fill all required fields"
+            Exit Sub
+        ElseIf tbLoanTerm.Text < 0 Then
+            lblMonthlyPmt.Text = "Please enter a positive number"
+            Exit Sub
+        Else
+            term = CDbl(Val(tbLoanTerm.Text))
+        End If
+
 
         'This section formats the loan input to currency.
         tbLoanAmt.Text = FormatCurrency(loanAmount)
@@ -88,7 +116,20 @@ Partial Class _Default
         tbLoanTerm.Text = ""
         lblMonthlyPmt.Text = ""
         loanGridView.DataBind()
-       
+
     End Sub
+
+    Function AlphaCharacters(ByVal StringToCheck As String)
+
+
+        For i = 0 To StringToCheck.Length - 1
+            If Char.IsLetter(StringToCheck.Chars(i)) Then
+                Return True
+            End If
+        Next
+
+        Return False
+
+    End Function
 
 End Class
